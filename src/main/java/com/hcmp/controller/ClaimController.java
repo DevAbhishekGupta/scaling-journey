@@ -21,7 +21,7 @@ import com.hcmp.model.User;
 import com.hcmp.service.ClaimService;
 
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("claim/api")
 public class ClaimController {

@@ -72,12 +72,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/*
-	@Override
-	public Member getMemberByClaimId(Integer claimId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
+	 * @Override public Member getMemberByClaimId(Integer claimId) { // TODO
+	 * Auto-generated method stub return null; }
+	 */
 
 	@Override
 	public List<Member> getAllMembers() {
@@ -218,20 +215,20 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 	}
-	
+
 	@Override
 	public List<MemberDetails> getMemberByClaimId(Integer claimId) {
 		Claim claim = claimService.getClaimById(claimId);
 
-		if(claim != null) {
+		if (claim != null) {
 			Member member = getMemberById(claim.getFkMemberId());
-			
+
 			List<MemberDetails> memberDetailsList = new ArrayList<>();
-			
+
 			MemberDetails memberDetails = new MemberDetails();
-			
+
 			String physicianName = physicianService.getPhysicianName(member.getFkPhysicianId());
-			
+
 			memberDetails.setMemberId(member.getMemberId());
 			memberDetails.setFirstName(member.getFirstName());
 			memberDetails.setLastName(member.getLastName());
@@ -239,9 +236,9 @@ public class MemberServiceImpl implements MemberService {
 			memberDetails.setClaimId(claim.getClaimId());
 			memberDetails.setClaimAmount(claim.getClaimAmount());
 			memberDetails.setSubmittedDate(claim.getSubmittedAt());
-			
+
 			memberDetailsList.add(memberDetails);
-			
+
 			return memberDetailsList;
 		}
 		return null;
@@ -250,18 +247,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member getMemberByUserId(Integer userId) {
 		Member member = memberRepository.getMemberDetailsByUserId(userId);
-		if(member !=null) {
+		if (member != null) {
 			return member;
-		}else {
+		} else {
 			return null;
 		}
-		
+
 	}
 
 	@Override
 	public Member updateCompany(Member member) {
 		Member mem = memberRepository.findById(member.getMemberId()).get();
-		if(mem != null) {
+		if (mem != null) {
 			mem.setFirstName(member.getFirstName());
 			mem.setLastName(member.getLastName());
 			mem.setAddress(member.getAddress());
@@ -270,10 +267,32 @@ public class MemberServiceImpl implements MemberService {
 			mem.setEmail(member.getEmail());
 			mem.setDob(member.getDob());
 			mem.setModifiedAt(LocalDate.now());
-			
+
 			return memberRepository.saveAndFlush(mem);
-			
-		}else {
+
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public String isEmailExist(String email) {
+		String email1 = memberRepository.isEmailExist(email);
+
+		if (email1 != null) {
+			return email1;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public Integer getMemberId(Integer userid) {
+		Member member = memberRepository.getMemberDetailsByUserId(userid);
+		if (member != null) {
+			Integer memberid = member.getMemberId();
+			return memberid;
+		} else {
 			return null;
 		}
 	}

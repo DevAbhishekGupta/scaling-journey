@@ -25,5 +25,9 @@ public interface MemberService {
 	public Member getMemberByUserId(Integer userId);
 	
 	public Member updateCompany(Member member);
+	
+	public String isEmailExist(String email);
+	
+	public Integer getMemberId(Integer userid);
 
 }

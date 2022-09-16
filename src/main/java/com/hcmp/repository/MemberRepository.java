@@ -25,4 +25,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 	@Query(value = "SELECT m from Member m where m.fkUserId = :userid")
 	public Member getMemberDetailsByUserId(@Param("userid") Integer userid);
 	
+	@Query(value = "SELECT m.email from Member m where m.email = :email")
+	public String isEmailExist(@Param("email") String email);
+	
 }

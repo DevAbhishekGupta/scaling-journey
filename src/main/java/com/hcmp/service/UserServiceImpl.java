@@ -82,4 +82,15 @@ public class UserServiceImpl implements UserService {
 			
 	}
 	
+	@Override
+	public String isUserExist(String userName) {
+		String username = userRepo.isUserExist(userName);
+		
+		if(username != null) {
+			return username;
+		}else {
+			return null;
+		}
+	}
+	
 }

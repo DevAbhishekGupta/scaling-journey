@@ -10,11 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hcmp.model.Member;
 import com.hcmp.model.User;
 import com.hcmp.service.UserServiceImpl;
 
@@ -36,5 +39,21 @@ public class UserController {
 		return new ResponseEntity<String>("user not added", HttpStatus.CREATED);
 	}
 
+	@GetMapping("/isUserExist/{userName}")
+	public ResponseEntity<?> isUserExist(@PathVariable("userName") String userName) {
+
+		if (userName != null) {
+			String username = userServiceImpl.isUserExist(userName);
+			boolean isUserExist;
+			if (username != null) {
+				isUserExist = true;
+			} else {
+				isUserExist = false;
+			}
+			return new ResponseEntity<Boolean>(isUserExist, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Username can't be null", HttpStatus.NO_CONTENT);
+		}
+	}
 
 }

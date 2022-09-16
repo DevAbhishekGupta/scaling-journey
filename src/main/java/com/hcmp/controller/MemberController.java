@@ -26,7 +26,7 @@ import com.hcmp.service.MemberService;
 import com.hcmp.service.PhysicianService;
 import com.hcmp.service.UserService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("mem/api")
 public class MemberController {
@@ -201,6 +201,40 @@ public class MemberController {
 			return new ResponseEntity<String>("User Id can't be null", HttpStatus.NO_CONTENT);
 		}
 		
+	}
+	
+	@GetMapping("/isEmailExist/{email}")
+	public ResponseEntity<?> isEmailExist(@PathVariable("email") String email) {
+
+		if (email != null) {
+			String email1 = memberService.isEmailExist(email);
+			boolean isEmailExist;
+			
+			if (email1 != null) {
+				isEmailExist = true;
+			} else {
+				isEmailExist = false;
+			}
+			return new ResponseEntity<Boolean>(isEmailExist, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Email can't be null", HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@GetMapping("/getMemberId/{userid}")
+	public ResponseEntity<?> getMemberId(@PathVariable("userid") Integer userid) {
+
+		if (userid != null) {
+			Integer getMemberId = memberService.getMemberId(userid);
+
+			if (getMemberId != null && getMemberId > 0) {
+				return new ResponseEntity<Integer>(getMemberId, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("Member not found", HttpStatus.NOT_FOUND);
+			}
+		} else {
+			return new ResponseEntity<String>("User ID can't be null", HttpStatus.NO_CONTENT);
+		}
 	}
 
 }
