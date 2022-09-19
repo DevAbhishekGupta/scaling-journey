@@ -40,6 +40,8 @@ public class AuthController {
 	
 	@PostMapping("/loginUser")
 	public ResponseEntity<?> loginUser(@RequestBody User user) {
+		
+		ResponseEntity<?> responseEntity = null;
 		try {
 			String jwtToken = generateToken(user.getUsername(), user.getPassword());
 			mObj.put("message", "User successfully logged in");
@@ -49,13 +51,17 @@ public class AuthController {
 				User user1 = userServiceImpl.getUserDetails(user.getUsername());
 				mObj.put("role", user1.getRole().toString());
 				mObj.put("userid", user1.getUserId().toString());
+				responseEntity = new ResponseEntity<>(mObj, HttpStatus.OK);
 			}
 			
 		} catch (Exception e) {
 			mObj.put("message", "User unsuccessful to be logged in");
-			mObj.put("token", null);
+			//mObj.put("token", null);
+			responseEntity = new ResponseEntity<>(mObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<>(mObj, HttpStatus.CREATED);
+		
+		return responseEntity;
+		
 	}
 
 	public String generateToken(String username, String password) throws ServletException, Exception {
