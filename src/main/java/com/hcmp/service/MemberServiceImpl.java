@@ -35,6 +35,7 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	
 	@Override
 	public Member getMemberById(Integer memberId) {
 
@@ -76,6 +77,7 @@ public class MemberServiceImpl implements MemberService {
 	 * Auto-generated method stub return null; }
 	 */
 
+	/*
 	@Override
 	public List<Member> getAllMembers() {
 
@@ -88,6 +90,7 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 
 	}
+	*/
 
 	@Override
 	public List<MemberDetails> getMemberDetailsById(Integer memberId) {
@@ -275,6 +278,8 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	/*
+	
 	@Override
 	public String isEmailExist(String email) {
 		String email1 = memberRepository.isEmailExist(email);
@@ -285,6 +290,8 @@ public class MemberServiceImpl implements MemberService {
 			return null;
 		}
 	}
+	
+	*/
 
 	@Override
 	public Integer getMemberId(Integer userid) {

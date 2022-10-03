@@ -203,6 +203,158 @@ class HcmpApplicationTests {
 		}
 	}
 	
+	@Test
+	public void testGetMemberDetailsByUserIdSuccess() throws URISyntaxException {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		final String baseUrl = LOCALHOST+randomServerPort+"/mem/api/getMemberDetailsByUserId/{userid}";
+		//URI uri = new URI(baseUrl);
+		
+		Map<String,Object> uriVarMap = new HashMap<>();
+		uriVarMap.put("userid", "16");
+		
+		URI uri = UriComponentsBuilder.fromUriString(baseUrl)
+				.buildAndExpand(uriVarMap).toUri();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+		
+		
+		
+		ResponseEntity<?> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(headers),List.class);
+		
+		        
+        Assert.assertEquals(200, responseEntity.getStatusCodeValue());
+	}
+	
+	@Test
+	public void testGetMemberDetailsByUserIdFailure() throws URISyntaxException {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		final String baseUrl = LOCALHOST+randomServerPort+"/mem/api/getMemberDetailsByUserId/{userid}";
+		//URI uri = new URI(baseUrl);
+		
+		Map<String,Object> uriVarMap = new HashMap<>();
+		uriVarMap.put("userid", "19");
+		
+		URI uri = UriComponentsBuilder.fromUriString(baseUrl)
+				.buildAndExpand(uriVarMap).toUri();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+		
+		try {
+			ResponseEntity<?> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(headers),List.class);
+			Assert.fail();
+		}catch(HttpServerErrorException e) {
+			Assert.assertEquals(500, e.getRawStatusCode());
+		}
+	}
+	
+	//
+	
+	@Test
+	public void testGetMemberIdSuccess() throws URISyntaxException {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		final String baseUrl = LOCALHOST+randomServerPort+"/mem/api/getMemberId/{userid}";
+		//URI uri = new URI(baseUrl);
+		
+		Map<String,Object> uriVarMap = new HashMap<>();
+		uriVarMap.put("userid", "16");
+		
+		URI uri = UriComponentsBuilder.fromUriString(baseUrl)
+				.buildAndExpand(uriVarMap).toUri();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+		
+		
+		
+		ResponseEntity<?> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(headers),Integer.class);
+		
+		        
+        Assert.assertEquals(200, responseEntity.getStatusCodeValue());
+	}
+	
+	@Test
+	public void testGetMemberIdFailure() throws URISyntaxException {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		final String baseUrl = LOCALHOST+randomServerPort+"/mem/api/getMemberId/{userid}";
+		//URI uri = new URI(baseUrl);
+		
+		Map<String,Object> uriVarMap = new HashMap<>();
+		uriVarMap.put("userid", "19");
+		
+		URI uri = UriComponentsBuilder.fromUriString(baseUrl)
+				.buildAndExpand(uriVarMap).toUri();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+		
+		try {
+			ResponseEntity<?> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(headers),Integer.class);
+			Assert.assertEquals(404, responseEntity.getStatusCodeValue());
+			Assert.fail();
+		}catch(HttpServerErrorException e) {
+			Assert.assertEquals(500, e.getRawStatusCode());
+		}
+	}
+	
+	//getMemberByUserId
+	
+	@Test
+	public void testGetMemberByUserIdSuccess() throws URISyntaxException {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		final String baseUrl = LOCALHOST+randomServerPort+"/mem/api/getMemberByUserId/{userid}";
+		//URI uri = new URI(baseUrl);
+		
+		Map<String,Object> uriVarMap = new HashMap<>();
+		uriVarMap.put("userid", "16");
+		
+		URI uri = UriComponentsBuilder.fromUriString(baseUrl)
+				.buildAndExpand(uriVarMap).toUri();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+		
+		
+		
+		ResponseEntity<?> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(headers),Member.class);
+		
+		        
+        Assert.assertEquals(200, responseEntity.getStatusCodeValue());
+	}
+	
+	@Test
+	public void testGetMemberByUserIdFailure() throws URISyntaxException {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		final String baseUrl = LOCALHOST+randomServerPort+"/mem/api/getMemberByUserId/{userid}";
+		//URI uri = new URI(baseUrl);
+		
+		Map<String,Object> uriVarMap = new HashMap<>();
+		uriVarMap.put("userid", "19");
+		
+		URI uri = UriComponentsBuilder.fromUriString(baseUrl)
+				.buildAndExpand(uriVarMap).toUri();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+		
+		try {
+			ResponseEntity<?> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(headers),Member.class);
+			Assert.assertEquals(404, responseEntity.getStatusCodeValue());
+			Assert.fail();
+		}catch(HttpServerErrorException e) {
+			Assert.assertEquals(500, e.getRawStatusCode());
+		}
+	}
+	
+	
+	
 	//========================================================================================
 	
 	@Test

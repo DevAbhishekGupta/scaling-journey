@@ -12,6 +12,6 @@ public interface UserService {
 	
 	public User addMemberUser(User user);
 	
-	public String isUserExist(String userName);
+	//public String isUserExist(String userName);
 
 }

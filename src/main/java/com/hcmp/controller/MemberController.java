@@ -62,6 +62,7 @@ public class MemberController {
 
 	}
 
+	/*
 	@GetMapping("/getMemberById/{memberId}")
 	public ResponseEntity<?> getMemberById(@PathVariable("memberId") Integer memberId) {
 
@@ -77,6 +78,7 @@ public class MemberController {
 			return new ResponseEntity<String>("Member Id can't be null", HttpStatus.NO_CONTENT);
 		}
 	}
+	*/
 
 	@GetMapping("/getMemberByName/{firstName}/{lastName}")
 	public ResponseEntity<?> getMemberByName(@PathVariable("firstName") String firstName,
@@ -95,6 +97,7 @@ public class MemberController {
 		}
 	}
 
+	/*
 	@GetMapping("/getAllMembers")
 	public ResponseEntity<?> getAllMembers() {
 
@@ -106,6 +109,7 @@ public class MemberController {
 		}
 
 	}
+	*/
 
 	@GetMapping("/getMemberByPhysician/{physicianId}")
 	public ResponseEntity<?> getMemberByPhysician(@PathVariable("physicianId") Integer physicianId) {
@@ -203,6 +207,7 @@ public class MemberController {
 		
 	}
 	
+	/*
 	@GetMapping("/isEmailExist/{email}")
 	public ResponseEntity<?> isEmailExist(@PathVariable("email") String email) {
 
@@ -220,6 +225,7 @@ public class MemberController {
 			return new ResponseEntity<String>("Email can't be null", HttpStatus.NO_CONTENT);
 		}
 	}
+	*/
 	
 	@GetMapping("/getMemberId/{userid}")
 	public ResponseEntity<?> getMemberId(@PathVariable("userid") Integer userid) {

@@ -82,6 +82,7 @@ public class UserServiceImpl implements UserService {
 			
 	}
 	
+	/*
 	@Override
 	public String isUserExist(String userName) {
 		String username = userRepo.isUserExist(userName);
@@ -92,5 +93,5 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
-	
+	*/
 }

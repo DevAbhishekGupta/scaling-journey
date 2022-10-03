@@ -36,9 +36,10 @@ public class UserController {
 		if (userServiceImpl.addUser(user) != null) {
 			return new ResponseEntity<User>(user, HttpStatus.CREATED);
 		}
-		return new ResponseEntity<String>("user not added", HttpStatus.CREATED);
+		return new ResponseEntity<String>("user not added", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	/*
 	@GetMapping("/isUserExist/{userName}")
 	public ResponseEntity<?> isUserExist(@PathVariable("userName") String userName) {
 
@@ -55,5 +56,6 @@ public class UserController {
 			return new ResponseEntity<String>("Username can't be null", HttpStatus.NO_CONTENT);
 		}
 	}
+	*/
 
 }

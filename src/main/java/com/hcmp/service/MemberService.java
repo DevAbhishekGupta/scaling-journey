@@ -13,7 +13,7 @@ public interface MemberService {
 	public List<MemberDetails> getMemberByPhysician(Integer physicianId);
 	//public Member getMemberByClaimId(Integer claimId);
 	
-	public List<Member> getAllMembers();
+	//public List<Member> getAllMembers();
 	
 	public List<MemberDetails> getMemberDetailsById(Integer memberId);
 	public List<MemberDetails> getMemberDetailsByUserId(Integer userid);
@@ -26,7 +26,7 @@ public interface MemberService {
 	
 	public Member updateCompany(Member member);
 	
-	public String isEmailExist(String email);
+	//public String isEmailExist(String email);
 	
 	public Integer getMemberId(Integer userid);
 
